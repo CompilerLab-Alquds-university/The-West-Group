@@ -26,6 +26,7 @@ public class Lexical_Analyzer {
                } else if (Character.isDigit(c)) {
 
                    Token Temp_Token = Token_list.getLast();
+
                    if (Temp_Token.tokenCategory==Token_Category.Constant)
                    {
                        Temp_Token.value = Temp_Token.value + c;
@@ -34,6 +35,7 @@ public class Lexical_Analyzer {
                    {
                        Token_list.add(new Token(Token_Category.Constant, c + ""));
                    }
+
                } else if (c == ';') {
 
                    Token_list.add(new Token(Token_Category.Keyword, c + ""));
@@ -45,8 +47,7 @@ public class Lexical_Analyzer {
        }
 
 
-       for (int i=0; i<Token_list.size();i++)
-        System.out.println(Token_list.get(i).value);
+        for (Token token : Token_list) System.out.println(token.value);
 
     }
 
@@ -63,3 +64,4 @@ public class Lexical_Analyzer {
 
 
 }
+//comment
