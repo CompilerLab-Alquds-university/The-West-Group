@@ -15,32 +15,45 @@ public class Parse_Tree {
         }
         return root;
     }
-    private Node expression() {
 
+    private Node expression() {
         Token token = tokens.get(current);
 
         switch (token.tokenCategory)
         {
-            case Constant-> {
+            case Constant: {
                 current++;
                 return new Node(token);
             }
-            case Identifier-> {
+            case Keyword: {
+                current++;
+                return new Node(token);
+            }
+            case Identifier: {
                 current++;
                 Node node = expression();
 
-                if((!";".equals(token.value))||(token.tokenCategory!=Token_Category.Operator))
-                {
+                if ((token.tokenCategory != Token_Category.Keyword) && (token.tokenCategory != Token_Category.Operator)) {
                     throw new RuntimeException("Use variable correctly");
+                }
+                if ((token.tokenCategory == Token_Category.Keyword)){
+                    current++;
                 }
                 return node;
             }
 
-            case Operator -> {
+            case Operator: {
+                current++;
+                Node node = expression();
+                if ((!token.value.equals(";"))) {
+                    throw new RuntimeException("; is expected");
+                }
+                current++;
+                return node;
             }
-            default -> throw new RuntimeException("Unexpected token: " + token.getValue());
+            default: {
+                throw new RuntimeException("Unexpected token: " + token.getValue());
+            }
         }
-        return null;
     }
 }
-
