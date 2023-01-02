@@ -9,6 +9,13 @@ public class Lexical_Analyzer {
 
     LinkedList<Token> Token_list = new LinkedList<>();
 
+    public LinkedList<Token> getToken_list() {
+        return Token_list;
+    }
+
+    public void setToken_list(LinkedList<Token> token_list) {
+        Token_list = token_list;
+    }
 
     public Lexical_Analyzer() throws IOException {
 
@@ -64,5 +71,3 @@ public class Lexical_Analyzer {
 
 
 }
-//comment
-//lol
