@@ -25,7 +25,15 @@ public class Lexical_Analyzer {
                    Token_list.add(new Token(Token_Category.Operator, c + ""));
                } else if (Character.isDigit(c)) {
 
-                   Token_list.add(new Token(Token_Category.Constant, c + ""));
+                   Token Temp_Token = Token_list.getLast();
+                   if (Temp_Token.tokenCategory==Token_Category.Constant)
+                   {
+                       Temp_Token.value = Temp_Token.value + c;
+                   }
+                   else
+                   {
+                       Token_list.add(new Token(Token_Category.Constant, c + ""));
+                   }
                } else if (c == ';') {
 
                    Token_list.add(new Token(Token_Category.Keyword, c + ""));
