@@ -43,10 +43,8 @@ public class Lexical_Analyzer {
     public boolean isOperator(char c)
     {
         char[] Operators = {'+', '-' , '*' , '/' , '='};
-        for (int i=0 ;i<Operators.length;i++)
-        {
-            if(c==Operators[i])
-            {
+        for (char operator : Operators) {
+            if (c == operator) {
                 return true;
             }
         }
