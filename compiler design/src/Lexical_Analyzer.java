@@ -32,6 +32,12 @@ public class Lexical_Analyzer {
                    Token_list.add(new Token(Token_Category.Operator, c + ""));
                } else if (Character.isDigit(c)) {
 
+                   if(Token_list.isEmpty())
+                   {
+                       Token_list.add(new Token(Token_Category.Constant, c + ""));
+                       continue;
+                   }
+
                    Token Temp_Token = Token_list.getLast();
 
                    if (Temp_Token.tokenCategory==Token_Category.Constant)
