@@ -60,7 +60,7 @@ public class Lexical_Analyzer {
        }
 
 
-        for (Token token : Token_list) System.out.println(token.value);
+        //for (Token token : Token_list) System.out.println(token.value);
 
     }
 
