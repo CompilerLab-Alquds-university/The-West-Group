@@ -12,31 +12,33 @@ public class Lexical_Analyzer {
 
     public Lexical_Analyzer() throws IOException {
 
-       char c = ((char) br.read());
+       int a;
 
-       while(c!=-1)
+       while((a=br.read())!=-1)
        {
+           char c =(char) a;
 
-           if(isOperator(c))
-           {
-              Token_list.add(new Token(Token_Category.Operator,c+""));
-           }
-           else if(Character.isDigit(c))
-           {
+           if(a!=127 && a!=32 && a!=10 && a!=13) {
 
-              Token_list.add(new Token(Token_Category.Constant,c+""));
-           }
-           else if(c==';')
-           {
 
-              Token_list.add(new Token(Token_Category.Keyword,c+""));
-           }
-           else
-           {
-               Token_list.add(new Token(Token_Category.Identifier,c+""));
+               if (isOperator(c)) {
+                   Token_list.add(new Token(Token_Category.Operator, c + ""));
+               } else if (Character.isDigit(c)) {
 
+                   Token_list.add(new Token(Token_Category.Constant, c + ""));
+               } else if (c == ';') {
+
+                   Token_list.add(new Token(Token_Category.Keyword, c + ""));
+               } else {
+                   Token_list.add(new Token(Token_Category.Identifier, c + ""));
+
+               }
            }
        }
+
+
+       for (int i=0; i<Token_list.size();i++)
+        System.out.println(Token_list.get(i).value);
 
     }
 
@@ -50,5 +52,6 @@ public class Lexical_Analyzer {
         }
         return false;
     }
+
 
 }
